@@ -4,6 +4,8 @@
 
 A Model Context Protocol (MCP) server that provides programmatic access to Israeli Land Authority (רמ״י) public tender data.
 
+<img width="2048" height="1353" alt="image" src="https://github.com/user-attachments/assets/729f979c-a368-4520-82f2-f2e4c51a8892" />
+
 ## Features
 
 - **Comprehensive Search**: Advanced filtering by type, location, status, and dates
