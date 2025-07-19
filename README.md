@@ -1,5 +1,7 @@
 # Israeli Land Authority (רמ״י) Unofficial MCP Server
 
+[![Buy Me A Coffee](https://img.shields.io/badge/-Buy%20me%20a%20coffee-%23FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/barha)
+
 A Model Context Protocol (MCP) server that provides programmatic access to Israeli Land Authority (רמ״י) public tender data.
 
 ## Features
