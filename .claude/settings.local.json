@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(uv add:*)",
+      "Bash(black:*)",
+      "Bash(python:*)",
+      "Bash(uv run:*)",
+      "Bash(timeout 5s uv run:*)",
+      "Bash(sed:*)",
+      "Bash(timeout:*)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "Bash(rm:*)",
+      "Bash(uv sync:*)"
+    ],
+    "deny": []
+  }
+}

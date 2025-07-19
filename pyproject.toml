@@ -1,7 +1,59 @@
 [project]
 name = "remy-mcp"
-version = "0.1.0"
-description = "Add your description here"
+version = "1.0.0"
+description = "MCP Server for Israeli Land Authority (רמ״י) public tender data"
 readme = "README.md"
+authors = [
+    {name = "Claude Code", email = "noreply@anthropic.com"}
+]
+license = {text = "MIT"}
+keywords = ["mcp", "israeli-land-authority", "tenders", "real-estate", "israel"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "black>=25.1.0",
+    "fastmcp>=2.10.5",
+    "pydantic>=2.11.7",
+    "requests>=2.32.4",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/anthropics/remy-mcp"
+"Bug Reports" = "https://github.com/anthropics/remy-mcp/issues"
+"Source" = "https://github.com/anthropics/remy-mcp"
+
+[project.scripts]
+remy-mcp = "src.remy_mcp.server:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "black>=25.1.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+
+[dependency-groups]
+dev = [
+    "psutil>=7.0.0",
+    "pytest>=8.4.1",
+    "pytest-cov>=6.2.1",
+    "pytest-timeout>=2.4.0",
+]
