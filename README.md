@@ -21,7 +21,7 @@ A Model Context Protocol (MCP) server that provides programmatic access to Israe
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/barvhaim/remy-mcp
 cd remy-mcp
 
 # Install dependencies
