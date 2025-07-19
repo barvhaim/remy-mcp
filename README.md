@@ -1,4 +1,4 @@
-# Israeli Land Authority MCP Server (רמ״י)
+# Israeli Land Authority (רמ״י) Unofficial MCP Server
 
 A Model Context Protocol (MCP) server that provides programmatic access to Israeli Land Authority (רמ״י) public tender data.
 
@@ -22,20 +22,6 @@ cd remy-mcp
 
 # Install dependencies
 uv sync
-
-# Run the MCP server
-uv run python main.py
-# or
-uv run remy-mcp
-```
-
-### Connect via MCP Client
-
-Use any MCP-compatible client to connect:
-
-```
-Server transport: python main.py
-Working directory: /path/to/remy-mcp
 ```
 
 ### Claude Desktop Integration
@@ -87,63 +73,10 @@ After adding the configuration and restarting Claude Desktop, you'll have access
 - **`remy://settlements`** - All settlements with codes
 - **`remy://server-info`** - Server capabilities
 
-## Data Categories
-
-### Tender Types (סוגי מכרזים)
-1. **Regular Public Tender** (מכרז ציבורי רגיל)
-2. **Target Price** (מחיר יעד)
-3. **Reduced Price Housing** (דיור במחיר למשתכן)
-4. **Initiative Tender** (מכרז יוזמה)
-5. **Unspecified Plot Tender** (מכרז למגרש לא מיועד)
-6. **Registration and Lottery** (רישום והגרלה)
-7. **Rental Housing** (דיור להשכרה)
-8. **Amidar Tenders** (מכרזי עמידר)
-9. **Acre Development Company Tenders** (מכרזי חברת פיתוח עכו)
-
-### Regions (אזורי ישראל)
-- **Jerusalem** (ירושלים)
-- **Tel Aviv** (תל אביב)
-- **Haifa** (חיפה)
-- **Center** (מרכז)
-- **South** (דרום)
-- **Judea and Samaria** (יהודה ושומרון)
-
-### Land Use Types (ייעודי קרקע)
-- Low-rise/Ground-attached Construction
-- High-density Construction
-- Commerce and/or Offices
-- Hotels, Sports, Recreation, Tourism
-- Residential mixed-use
-- Mining and Quarrying
-- Other categories
-
-## Usage Examples
-
-### Search Active Tenders
-```python
-# Via API client
-from israeli_land_api import IsraeliLandAPI
-api = IsraeliLandAPI()
-results = api.search_tenders(active_only=True, max_results=50)
-```
-
-### Location-Based Search
-```python
-# Search tenders in Tel Aviv region
-results = api.search_by_location(region="תל אביב")
-```
-
-### Get Tender Details
-```python
-# Get detailed information for a specific tender
-details = api.get_tender_details(michraz_id=20250001)
-```
-
 ## Technical Details
 
 ### API Configuration
 - **Base URL**: `https://apps.land.gov.il/MichrazimSite/api`
-- **Required Headers**: `User-Agent: datagov-external-client`
 - **Rate Limiting**: 1-second delay between requests
 - **Encoding**: UTF-8 for Hebrew text support
 
