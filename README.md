@@ -2,6 +2,10 @@
 
 [![Buy Me A Coffee](https://img.shields.io/badge/-Buy%20me%20a%20coffee-%23FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/barha)
 
+<a href="https://glama.ai/mcp/servers/@barvhaim/remy-mcp">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@barvhaim/remy-mcp/badge" alt="Israeli Land Authority Server MCP server" />
+</a>
+
 A Model Context Protocol (MCP) server that provides programmatic access to Israeli Land Authority (רמ״י) public tender data.
 
 <img width="2048" height="1353" alt="image" src="https://github.com/user-attachments/assets/729f979c-a368-4520-82f2-f2e4c51a8892" />
