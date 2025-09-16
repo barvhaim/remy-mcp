@@ -35,13 +35,7 @@ def sample_tender_id():
 @pytest.fixture
 def sample_settlement_names():
     """Sample settlement names for testing"""
-    return [
-        "תל אביב",
-        "ירושלים", 
-        "חיפה",
-        "באר שבע",
-        "נתניה"
-    ]
+    return ["תל אביב", "ירושלים", "חיפה", "באר שבע", "נתניה"]
 
 
 @pytest.fixture
@@ -59,58 +53,62 @@ def sample_search_params():
 def rate_limiter():
     """Helper to ensure we don't exceed API rate limits during tests"""
     last_call_time = {"time": 0}
-    
+
     def wait_for_rate_limit(min_delay: float = 1.0):
         current_time = time.time()
         time_since_last = current_time - last_call_time["time"]
         if time_since_last < min_delay:
             time.sleep(min_delay - time_since_last)
         last_call_time["time"] = time.time()
-    
+
     return wait_for_rate_limit
 
 
 @pytest.fixture
 def test_data_validator():
     """Helper to validate API response data structure"""
+
     def validate_tender_data(tender: Dict[str, Any]) -> bool:
         """Validate basic tender data structure"""
         required_fields = ["MichrazID"]
         optional_fields = [
-            "MichrazName", "KodMerchav", "StatusMichraz", 
-            "KodYeudMichraz", "KodYeshuv", "Shchuna",
-            "PirsumDate", "SgiraDate", "VaadaDate"
+            "MichrazName",
+            "KodMerchav",
+            "StatusMichraz",
+            "KodYeudMichraz",
+            "KodYeshuv",
+            "Shchuna",
+            "PirsumDate",
+            "SgiraDate",
+            "VaadaDate",
         ]
-        
+
         # Check required fields
         for field in required_fields:
             if field not in tender:
                 return False
-                
+
         # Check data types for key fields
         if not isinstance(tender.get("MichrazID"), int):
             return False
-            
+
         return True
-    
+
     def validate_search_response(response: Dict[str, Any]) -> bool:
         """Validate search response structure"""
         if not isinstance(response, (list, dict)):
             return False
-            
+
         if isinstance(response, list):
             return all(validate_tender_data(tender) for tender in response)
-        
+
         # If dict, check for results array
         if "results" in response:
             return all(validate_tender_data(tender) for tender in response["results"])
-            
+
         return True
-    
-    return {
-        "tender": validate_tender_data,
-        "search": validate_search_response
-    }
+
+    return {"tender": validate_tender_data, "search": validate_search_response}
 
 
 @pytest.fixture(scope="session")
@@ -130,7 +128,7 @@ def known_settlement_codes():
     """Known settlement codes for testing"""
     # Get first few settlements from our reference data
     return {
-        settlement.name_hebrew: settlement.kod_yeshuv 
+        settlement.name_hebrew: settlement.kod_yeshuv
         for settlement in KOD_YESHUV_SETTLEMENTS[:10]
     }
 
@@ -152,7 +150,7 @@ def mock_response_data():
                 "PirsumDate": "2025-01-01T00:00:00+03:00",
                 "SgiraDate": "2025-03-01T12:00:00+03:00",
                 "VaadaDate": "2025-03-15T00:00:00+03:00",
-                "YechidotDiur": 50
+                "YechidotDiur": 50,
             }
         ],
         "details_response": {
@@ -161,13 +159,13 @@ def mock_response_data():
             "Divur": "Test tender remarks",
             "Comments": "Test comments",
             "TokefArvut": "2025-06-01T00:00:00+03:00",
-            "SchumArvut": 100000.0
+            "SchumArvut": 100000.0,
         },
         "map_response": {
             "MichrazID": 20250001,
             "coordinates": {"lat": 32.0853, "lng": 34.7818},
-            "map_data": {"zoom": 15}
-        }
+            "map_data": {"zoom": 15},
+        },
     }
 
 
@@ -186,12 +184,6 @@ def pytest_configure(config):
     config.addinivalue_line(
         "markers", "e2e: marks tests as end-to-end integration tests"
     )
-    config.addinivalue_line(
-        "markers", "slow: marks tests as slow running"
-    )
-    config.addinivalue_line(
-        "markers", "api: marks tests that require API access"
-    )
-    config.addinivalue_line(
-        "markers", "mcp: marks tests for MCP server functionality"
-    )
+    config.addinivalue_line("markers", "slow: marks tests as slow running")
+    config.addinivalue_line("markers", "api: marks tests that require API access")
+    config.addinivalue_line("markers", "mcp: marks tests for MCP server functionality")

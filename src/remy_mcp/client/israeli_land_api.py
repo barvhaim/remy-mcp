@@ -111,10 +111,10 @@ class IsraeliLandAPI:
 
         Returns:
             Dictionary containing search results
-            
+
         Note:
             The Israeli Land Authority API does not support server-side pagination.
-            Pagination is implemented client-side by retrieving all results and 
+            Pagination is implemented client-side by retrieving all results and
             then slicing them according to page_size and page_number parameters.
         """
         self._rate_limit()
@@ -188,14 +188,14 @@ class IsraeliLandAPI:
         # Note: The Israeli Land Authority API doesn't support server-side pagination
         # pageSize and pageNumber parameters are ignored by the API
         # We implement client-side pagination instead
-        
+
         try:
             response = self.session.post(
                 f"{self.BASE_URL}/SearchApi/Search", json=payload, timeout=30
             )
             response.raise_for_status()
             data = response.json()
-            
+
             # Implement client-side pagination since API doesn't support it
             if isinstance(data, list):
                 # Apply client-side pagination to the results
@@ -209,7 +209,7 @@ class IsraeliLandAPI:
                     end_idx = start_idx + page_size
                     data["results"] = data["results"][start_idx:end_idx]
                 return data
-                
+
         except requests.exceptions.RequestException as e:
             raise Exception(f"Failed to search tenders: {str(e)}")
 
